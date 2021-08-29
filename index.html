@@ -164,6 +164,19 @@ colorPicker.onchange = (e) => {
 percent.onchange = () => {
     elem.style.strokeDashoffset = 440 - (440 * percent.value) / 100
 }
+
+// setInterval(() => {
+//     if(percent == 100){
+//         elem.style.removeProperty('transition')
+//         percent = 0
+//         setTimeout(() => {
+//             elem.style.strokeDashoffset = 440 - (440 * percent) / 100
+//             elem.style.transition = "stroke-dashoffset 200ms linear"
+//         },100)
+//     }
+//     elem.style.strokeDashoffset = 440 - (440 * percent) / 100
+//     percent++
+// }, 250);
   </script>
 </body>
 </html>
