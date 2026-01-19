@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+<! DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Pure css Circle Progress</title>
-  <style>:root {
+  <style>
+  :root {
     --box-shadow-color-dark: #5601B1;
     --box-shadow-color-light: #A354F6;
   }
   
-  *{
+  * {
     margin: 0;
-    padding: 0;
+    padding:  0;
     font-family: 'Roboto', sans-serif;
   }
   
@@ -46,7 +47,7 @@
   .container .card:before {
     content: '';
     position: absolute;
-    top: 0;
+    top:  0;
     left: -50%;
     width: 100%;
     height: 100%;
@@ -67,7 +68,7 @@
     position: relative;
     width: 150px;
     height: 150px;
-    z-index: 1000;
+    z-index:  1000;
     background-color: black;
     border-radius: 50%;
     box-shadow: 1px 1px 10px var(--box-shadow-color-dark);
@@ -77,7 +78,7 @@
   svg circle
   {
     width: 100%;
-    height: 100%;
+    height:  100%;
     fill: none;
     stroke-width: 10;
     stroke-linecap: round;
@@ -86,7 +87,7 @@
   
   svg circle:nth-child(2) {
     stroke-dasharray: 440;
-    stroke-dashoffset: 440;
+    stroke-dashoffset:  440;
   }
   
   #stop1 { stop-color: var(--box-shadow-color-light); }
@@ -96,7 +97,17 @@
     transition: stroke-dashoffset 200ms linear;
     stroke-dashoffset: calc(440 - (440 * 0) / 100);
     stroke: url(#Gradient2);;
-  }</style>
+  }
+
+  /* ✨ NOUVEAU:  Style pour le texte du pourcentage */
+  svg text {
+    fill: var(--box-shadow-color-light);
+    font-size: 28px;
+    font-weight:  bold;
+    text-anchor:  middle;
+    dominant-baseline:  middle;
+  }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -112,6 +123,8 @@
             </defs>
             <circle id="innerCircle" cx="70" cy="70" r="70"></circle>
             <circle  cx="70" cy="70" r="70"></circle>
+            <!-- ✨ NOUVEAU: Élément texte pour afficher le pourcentage -->
+            <text id="percentText" x="75" y="80">0%</text>
           </svg>
         </div>
       </div>
@@ -126,6 +139,7 @@ let colorPicker = document.getElementById("colorPick")
 let percent = document.getElementById("percent")
 let stop1 = document.getElementById("stop1")
 let stop2 = document.getElementById("stop2")
+let percentText = document.getElementById("percentText") // ✨ NOUVEAU:  Référence au texte
 
 var lightenDarkenColor = function (col, amt) {
 	var usePound = false;
@@ -163,6 +177,8 @@ colorPicker.onchange = (e) => {
 
 percent.onchange = () => {
     elem.style.strokeDashoffset = 440 - (440 * percent.value) / 100
+    // ✨ NOUVEAU:  Mise à jour du texte avec la valeur actuelle
+    percentText.textContent = percent.value + '%'
 }
 
 // setInterval(() => {
